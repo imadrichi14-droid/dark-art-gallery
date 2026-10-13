@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DARK ART GALLERY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#000;--fg:#f2f2f2;--mute:#8a8a8a;--line:#1c1c1c;--red:#b3121f;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-weight:300;line-height:1.7}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+.banner{background:#12080a;color:#d9a0a5;font-size:.72rem;text-align:center;padding:.5rem 1rem;letter-spacing:.06em;border-bottom:1px solid #2a1013}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 5vw;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.logo{font-family:var(--serif);font-size:1.35rem;letter-spacing:.35em;font-weight:600}
+.logo b{color:var(--red);font-weight:600}
+nav{display:flex;gap:2rem;align-items:center}
+nav a{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--mute);transition:color .3s;position:relative;padding:.2rem 0}
+nav a:hover,nav a.on{color:var(--fg)}
+nav a.on:after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--red)}
+.cnt{color:var(--red)}
+.burger{display:none;background:none;border:0;color:var(--fg);font-size:1.5rem}
+main{min-height:70vh;animation:in .8s ease both}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.wrap{max-width:1200px;margin:0 auto;padding:4rem 5vw}
+h1,h2,h3{font-family:var(--serif);font-weight:300;margin:0;line-height:1.1}
+h2{font-size:clamp(2rem,5vw,3.2rem);letter-spacing:.04em}
+.eyebrow{font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;color:var(--red);margin-bottom:1rem}
+.hero{min-height:82vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:4rem 6vw;background:radial-gradient(ellipse at 50% 40%,#1a0407 0%,#000 65%)}
+.hero h1{font-size:clamp(2.6rem,10vw,7rem);letter-spacing:.18em;font-weight:300}
+.hero h1 span{color:var(--red)}
+.hero p{max-width:480px;color:var(--mute);margin:1.8rem 0 2.5rem}
+.btn{display:inline-block;border:1px solid var(--fg);background:transparent;color:var(--fg);padding:.95rem 2.4rem;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;transition:all .35s}
+.btn:hover{background:var(--red);border-color:var(--red)}
+.btn.solid{background:var(--fg);color:#000}.btn.solid:hover{background:var(--red);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:2.2rem 1.8rem;margin-top:3rem}
+.card{display:block;opacity:0;animation:in .8s ease forwards}
+.frame{aspect-ratio:4/5;overflow:hidden;border:1px solid var(--line);background:#0a0a0a;position:relative}
+.frame svg,.frame img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter .6s;filter:brightness(.8)}
+.card:hover .frame svg,.card:hover .frame img{transform:scale(1.06);filter:brightness(1.1)}
+.card:hover .frame{border-color:var(--red)}
+.card h3{font-size:1.4rem;margin-top:1rem}
+.meta{display:flex;justify-content:space-between;color:var(--mute);font-size:.82rem}
+.price{color:var(--fg)}
+.sold{position:absolute;top:.8rem;left:.8rem;font-size:.65rem;letter-spacing:.25em;color:var(--red);border:1px solid var(--red);padding:.1rem .5rem;background:#000}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.big{font-family:var(--serif);font-size:2rem;margin:1rem 0}
+.row{display:flex;justify-content:space-between;padding:.8rem 0;border-bottom:1px solid var(--line);font-size:.9rem}
+.row span:first-child{color:var(--mute)}
+.crumb{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.crumb:hover{color:var(--red)}
+.item{display:flex;gap:1.2rem;align-items:center;padding:1.2rem 0;border-bottom:1px solid var(--line)}
+.item .frame{width:80px;flex:none}
+.item .grow{flex:1}
+.item h3{font-size:1.3rem}
+.x{background:none;border:0;color:var(--mute);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase}.x:hover{color:var(--red)}
+.total{display:flex;justify-content:space-between;font-family:var(--serif);font-size:1.8rem;margin:2rem 0}
+input,textarea{width:100%;background:#000;border:1px solid #2a2a2a;color:var(--fg);padding:.9rem 1rem;font:inherit;margin-bottom:1rem;border-radius:0}
+input:focus,textarea:focus{outline:0;border-color:var(--red)}
+label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.note{border-left:2px solid var(--red);padding:.6rem 1rem;color:#c9c9c9;background:#0b0b0b;font-size:.85rem;margin-top:1.5rem}
+.empty{color:var(--mute);text-align:center;padding:5rem 0}
+footer{border-top:1px solid var(--line);padding:2.5rem 5vw;text-align:center;color:var(--mute);font-size:.72rem;letter-spacing:.2em}
+@media(max-width:760px){
+.burger{display:block}
+nav{position:fixed;top:0;right:0;bottom:0;width:70%;background:#050505;flex-direction:column;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform .45s ease;border-left:1px solid var(--line)}
+nav.open{transform:none}
+.split{grid-template-columns:1fr;gap:2rem}
+.grid{grid-template-columns:repeat(2,1fr);gap:1.6rem 1rem}
+.card h3{font-size:1.15rem}
+.wrap{padding:2.5rem 5vw}
+.logo{font-size:1.05rem;letter-spacing:.25em}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.card{opacity:1}}
+</style>
+</head>
+<body>
+<div class="banner">PROTOTYPE &mdash; design preview only. Artworks are placeholders; cart, checkout and contact form do not process anything yet.</div>
+<header>
+  <a class="logo" href="#/">DARK<b>·</b>ART</a>
+  <button class="burger" id="bg" aria-label="Menu">&#9776;</button>
+  <nav id="nav">
+    <a href="#/" data-r="home">Home</a>
+    <a href="#/gallery" data-r="gallery">Gallery</a>
+    <a href="#/about" data-r="about">About</a>
+    <a href="#/contact" data-r="contact">Contact</a>
+    <a href="#/cart" data-r="cart">Cart <span class="cnt" id="cc">(0)</span></a>
+  </nav>
+</header>
+<main id="app"></main>
+<footer>DARK ART GALLERY &nbsp;·&nbsp; ORIGINAL DRAWINGS &nbsp;·&nbsp; &copy; 2026</footer>
+
+<script>
+/* ===== YOUR ARTWORKS =====
+   To use your own drawing: add  img:"my-drawing.jpg"  to an item
+   (put the image file in the same folder as this file). */
+const P=[
+{id:1,t:"Hollow Saint",p:1200,s:"30 × 40 cm",m:"Ink on paper",d:"A faceless figure kneeling in an empty chapel. Drawn in a single night, in silence."},
+{id:2,t:"The Quiet Hour",p:950,s:"21 × 29.7 cm",m:"Charcoal on paper",d:"The moment before the lights go out. Deep blacks built from layer after layer of charcoal."},
+{id:3,t:"Ash Garden",p:1500,s:"40 × 50 cm",m:"Ink and graphite",d:"Dead flowers growing from a floor of ash. Beauty that refuses to leave."},
+{id:4,t:"Velvet Crow",p:800,s:"21 × 29.7 cm",m:"Ink on paper",d:"A watcher on the edge of the frame. It has seen what you tried to forget."},
+{id:5,t:"Red Door",p:1800,s:"50 × 70 cm",m:"Ink, red accent",d:"One door, one thin line of red light. Nobody knows what waits behind it."},
+{id:6,t:"Mourning Veil",p:1100,s:"30 × 40 cm",m:"Charcoal on paper",d:"Fabric moving in a wind that isn't there. A study of absence."},
+{id:7,t:"Last Candle",p:700,s:"A5",m:"Ink on paper",d:"A small drawing with a long shadow. Perfect for a quiet corner.",sold:true},
+{id:8,t:"Night Orchard",p:2200,s:"60 × 80 cm",m:"Ink and charcoal",d:"The largest piece of the series. Trees that lean in to listen."}
+];
+const $=s=>document.querySelector(s);
+const fmt=n=>n.toLocaleString('en-US')+' DH';
+function rnd(s){return()=>(s=(s*16807)%2147483647)/2147483647}
+function art(p){
+  if(p.img)return `<img src="${p.img}" alt="${p.t}" loading="lazy">`;
+  const r=rnd(p.id*97+13);
+  let s='<svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Placeholder artwork"><rect width="400" height="500" fill="#0b0b0b"/>';
+  for(let i=0;i<9;i++){s+=`<path d="M${r()*400} ${r()*500}C${r()*400} ${r()*500} ${r()*400} ${r()*500} ${r()*400} ${r()*500}" stroke="#e8e8e8" stroke-opacity="${(.15+r()*.4).toFixed(2)}" stroke-width="${(.6+r()*1.6).toFixed(1)}" fill="none"/>`}
+  s+=`<circle cx="${(120+r()*160).toFixed(0)}" cy="${(150+r()*200).toFixed(0)}" r="${(25+r()*45).toFixed(0)}" fill="none" stroke="#b3121f" stroke-width="1.5"/></svg>`;
+  return s;
+}
+/* cart: each drawing is one-of-a-kind, so no quantities */
+let cart=[];
+try{cart=JSON.parse(localStorage.getItem('dag-cart')||'[]')}catch(e){}
+function save(){try{localStorage.setItem('dag-cart',JSON.stringify(cart))}catch(e){}$('#cc').textContent='('+cart.length+')'}
+function toggle(id){cart.includes(id)?cart=cart.filter(x=>x!==id):cart.push(id);save();route()}
+function card(p,i){return `<a class="card" href="#/product/${p.id}" style="animation-delay:${i*90}ms"><div class="frame">${art(p)}${p.sold?'<span class="sold">SOLD</span>':''}</div><h3>${p.t}</h3><div class="meta"><span>${p.m}</span><span class="price">${fmt(p.p)}</span></div></a>`}
+
+const V={
+home(){return `<section class="hero"><div class="eyebrow">Original drawings · One of a kind</div><h1>DARK <span>ART</span><br>GALLERY</h1><p>Step into the dark. Every piece is drawn by hand, exists once, and finds its owner in silence.</p><a class="btn" href="#/gallery">Enter the gallery</a></section>
+<div class="wrap"><div class="eyebrow">Latest arrivals</div><h2>From the shadows</h2><div class="grid">${P.slice(0,4).map(card).join('')}</div><p style="text-align:center;margin-top:3rem"><a class="btn" href="#/gallery">View all works</a></p></div>`},
+gallery(){return `<div class="wrap"><div class="eyebrow">The collection</div><h2>Art Gallery</h2><p style="color:var(--mute)">${P.length} original drawings. Each one is unique.</p><div class="grid">${P.map(card).join('')}</div></div>`},
+product(id){const p=P.find(x=>x.id==id);if(!p)return V.gallery();const inC=cart.includes(p.id);
+return `<div class="wrap"><a class="crumb" href="#/gallery">&larr; Back to gallery</a><div class="split" style="margin-top:2rem"><div class="frame">${art(p)}</div><div><div class="eyebrow">Original drawing</div><h2>${p.t}</h2><div class="big">${fmt(p.p)}</div><p style="color:#cfcfcf">${p.d}</p><div style="margin:1.5rem 0"><div class="row"><span>Size</span><span>${p.s}</span></div><div class="row"><span>Medium</span><span>${p.m}</span></div><div class="row"><span>Edition</span><span>Unique original</span></div></div>${p.sold?'<button class="btn" disabled style="opacity:.4">Sold</button>':`<button class="btn solid" onclick="toggle(${p.id})">${inC?'Remove from cart':'Add to cart'}</button>`}${inC?' <a class="btn" href="#/cart">View cart</a>':''}</div></div></div>`},
+cart(){const items=cart.map(id=>P.find(p=>p.id==id)).filter(Boolean);const tot=items.reduce((a,p)=>a+p.p,0);
+if(!items.length)return `<div class="wrap"><h2>Your cart</h2><div class="empty">Your cart is empty.<br><br><a class="btn" href="#/gallery">Explore the gallery</a></div></div>`;
+return `<div class="wrap" style="max-width:800px"><div class="eyebrow">Almost yours</div><h2>Your cart</h2>${items.map(p=>`<div class="item"><div class="frame">${art(p)}</div><div class="grow"><h3>${p.t}</h3><span style="color:var(--mute);font-size:.8rem">${p.s}</span></div><div>${fmt(p.p)}</div><button class="x" onclick="toggle(${p.id})">Remove</button></div>`).join('')}<div class="total"><span>Total</span><span>${fmt(tot)}</span></div><button class="btn solid" onclick="document.getElementById('co').style.display='block'">Checkout</button><div class="note" id="co" style="display:none"><b>Prototype only.</b> No payment or order is created here. A real checkout (customer details, payment, confirmation email) is added in the next phase.</div></div>`},
+about(){return `<div class="wrap" style="max-width:760px"><div class="eyebrow">The artist</div><h2>About</h2><p style="font-size:1.1rem;margin-top:2rem">Dark Art Gallery is a small, private collection of original drawings made by hand in ink and charcoal.</p><p style="color:var(--mute)">Replace this text with your own story: who you are, what inspires your work, how you draw, and what buyers receive (signed, packaged, shipped from where). A short, honest story sells better than a long one.</p><div class="note">Every drawing is one of a kind. When it is sold, it is gone.</div></div>`},
+contact(){return `<div class="wrap" style="max-width:640px"><div class="eyebrow">Get in touch</div><h2>Contact</h2><p style="color:var(--mute);margin-bottom:2rem">Questions about a piece, a commission or shipping? Write to me.</p><form onsubmit="event.preventDefault();document.getElementById('ok').style.display='block';this.reset()"><label>Name</label><input required><label>Email</label><input type="email" required><label>Message</label><textarea rows="5" required></textarea><button class="btn solid" type="submit">Send message</button></form><div class="note" id="ok" style="display:none"><b>Prototype only.</b> Nothing was sent. The real form will email you.</div></div>`}
+};
+function route(){
+  const h=location.hash.replace(/^#\/?/,'').split('/');const r=h[0]||'home';
+  const app=$('#app');app.style.animation='none';app.offsetWidth;app.style.animation='';
+  app.innerHTML=r=='product'?V.product(h[1]):(V[r]||V.home)();
+  document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.r==(r=='product'?'gallery':r)));
+  $('#nav').classList.remove('open');window.scrollTo(0,0);
+}
+$('#bg').onclick=()=>$('#nav').classList.toggle('open');
+addEventListener('hashchange',route);save();route();
+</script>
+</body>
+</html>
